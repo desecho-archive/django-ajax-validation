@@ -1,10 +1,12 @@
 from django import forms
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import BaseFormSet
 
 from ajax_validation.utils import LazyEncoder
 
+@csrf_exempt
 def validate(request, *args, **kwargs):
     form_class = kwargs.pop('form_class')
     defaults = {
